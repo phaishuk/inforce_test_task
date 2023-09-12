@@ -14,13 +14,25 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "password",
             "status",
-            "is_stuff",
+            "is_staff",
         )
 
         read_only_fields = ("is_staff",)
         extra_kwargs = {"password": {"write_only": True, "min_length": 5}}
 
     def create(self, validated_data):
+        first_name = validated_data.get("first_name")
+        last_name = validated_data.get("last_name")
+
+        existing_users = get_user_model().objects.filter(
+            first_name=first_name, last_name=last_name
+        )
+
+        if existing_users.exists():
+            raise ValidationError(
+                "A user with this first and last name already exists."
+            )
+
         return get_user_model().objects.create_user(**validated_data)
 
     def validate_status_is_staff(self, value):
