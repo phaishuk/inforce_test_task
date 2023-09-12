@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import User
 from django.utils.translation import gettext as _
 
+
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     fieldsets = (
