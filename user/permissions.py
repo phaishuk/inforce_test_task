@@ -9,6 +9,6 @@ class IsOwnerOrAdminOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         if view.action in ("update", "partial_update"):
-            return obj.user == request.user
+            return obj == request.user
         if view.action == "destroy":
-            return obj.user == request.user or request.user.is_staff
+            return obj == request.user or request.user.is_staff
