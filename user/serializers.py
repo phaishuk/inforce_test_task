@@ -2,8 +2,12 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
+from restaurant.models import Restaurant
+
 
 class UserSerializer(serializers.ModelSerializer):
+    restaurant_id = serializers.ListField(required=False)
+
     class Meta:
         model = get_user_model()
         fields = (
@@ -15,6 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
             "password",
             "status",
             "is_staff",
+            "restaurant_id",
         )
 
         read_only_fields = ("is_staff",)
@@ -33,19 +38,63 @@ class UserSerializer(serializers.ModelSerializer):
                 "A user with this first and last name already exists."
             )
 
-        return get_user_model().objects.create_user(**validated_data)
+        id_restaurant_list = validated_data.pop("restaurant_id", [])
 
-    def validate_status_is_staff(self, value):
-        is_staff = self.initial_data.get("is_staff")
-        status = self.initial_data.get("status")
+        user = get_user_model().objects.create_user(**validated_data)
+
+        for restaurant_id in id_restaurant_list:
+            try:
+                restaurant = Restaurant.objects.get(id=restaurant_id)
+                user.restaurant_reps.add(restaurant)
+            except Restaurant.DoesNotExist:
+                raise ValidationError(
+                    f"Restaurant with id {restaurant_id} does not exist. "
+                    f"Please provide a valid restaurant_id."
+                )
+
+        return user
+
+    def update(self, instance, validated_data):
+        restaurant_id_list = validated_data.pop("restaurant_id", [])
+
+        instance.restaurant_reps.clear()
+
+        for restaurant_id in restaurant_id_list:
+            try:
+                restaurant = Restaurant.objects.get(id=restaurant_id)
+                instance.restaurant_reps.add(restaurant)
+            except Restaurant.DoesNotExist:
+                raise ValidationError(
+                    f"Restaurant with id {restaurant_id} does not exist. "
+                    f"Please provide a valid restaurant_id."
+                )
+
+        return super().update(instance, validated_data)
+
+    def validate(self, data):
+        instance = self.instance
+        status = data.get("status") if not instance else instance.status
+        restaurant_id = (
+            data.get("restaurant_id")
+            if not instance
+            else instance.restaurant_reps.values_list("id", flat=True)
+        )
+        is_staff = data.get("is_staff") if not instance else instance.is_staff
 
         if status == "rest_rep" and is_staff:
             raise ValidationError(
                 "A user with status 'rest_rep' cannot have is_staff set to True."
             )
 
-        return value
+        if status == "rest_rep" and not restaurant_id:
+            raise ValidationError(
+                "Restaurant representative have to indicate restaurant_id "
+                "during profile creation or restaurant update"
+            )
 
-    def validate(self, data):
-        self.validate_status_is_staff(data.get("status"))
+        if status == "employee" and restaurant_id:
+            raise ValidationError(
+                "Company employees cannot be a restaurant representatives"
+            )
+
         return data
