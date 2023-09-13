@@ -77,7 +77,7 @@ class UserSerializer(serializers.ModelSerializer):
         restaurant_id = (
             data.get("restaurant_id")
             if not instance
-            else instance.restaurant_reps.values_list("id", flat=True)
+            else list(instance.restaurant_reps.values_list("id", flat=True))
         )
         is_staff = data.get("is_staff") if not instance else instance.is_staff
 
