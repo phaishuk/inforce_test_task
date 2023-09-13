@@ -23,4 +23,5 @@ urlpatterns = [
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/users/", include("user.urls", namespace="user")),
+    path("api/restaurants/", include("restaurant.urls", namespace="restaurant")),
 ]
