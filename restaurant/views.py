@@ -28,26 +28,14 @@ class MenuViewSet(ModelViewSet):
     def get_queryset(self):
         queryset = Menu.objects.all()
         search_param = self.request.query_params.get("search")
-        date = self.request.query_params.get("date")
 
         if search_param:
             queryset = queryset.filter(
                 Q(name__icontains=search_param)
-                | Q(restaurant_name__icontains=search_param)
                 | Q(first_course__icontains=search_param)
                 | Q(main_course__icontains=search_param)
                 | Q(drink__icontains=search_param)
             )
-
-        if date:
-            try:
-                date_obj = datetime.datetime.strptime(date, "%Y-%m-%d").date()
-                queryset = queryset.filter(date_obj)
-            except ValueError:
-                return Response(
-                    {"message": "Invalid date format. Please use YYYY-MM-DD."},
-                    status=400,
-                )
 
         return queryset
 
