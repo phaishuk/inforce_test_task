@@ -321,7 +321,7 @@
     "description": "Very good and tasty set and you will enjoy all the taste of Japan",
     "lunch_date": "2023-09-14",
     "vote_status": "opened",
-    "is_winner": true
+    "is_winner": false
   }
 },
 {
@@ -385,7 +385,7 @@
     "description": "This is classical ukrainian menu to eat good and tasty. Everyone will feel full",
     "lunch_date": "2023-09-13",
     "vote_status": "opened",
-    "is_winner": true
+    "is_winner": false
   }
 },
 {
@@ -401,7 +401,7 @@
     "description": "Very good and tasty set and you will enjoy all the taste of Japan",
     "lunch_date": "2023-09-13",
     "vote_status": "opened",
-    "is_winner": false
+    "is_winner": true
   }
 }
 ]
