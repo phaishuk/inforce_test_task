@@ -1,6 +1,6 @@
 import datetime
 
-from django.db.models import Count
+from django.db.models import Count, Q
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -24,6 +24,32 @@ class MenuViewSet(ModelViewSet):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        queryset = Menu.objects.all()
+        search_param = self.request.query_params.get("search")
+        date = self.request.query_params.get("date")
+
+        if search_param:
+            queryset = queryset.filter(
+                Q(name__icontains=search_param)
+                | Q(restaurant_name__icontains=search_param)
+                | Q(first_course__icontains=search_param)
+                | Q(main_course__icontains=search_param)
+                | Q(drink__icontains=search_param)
+            )
+
+        if date:
+            try:
+                date_obj = datetime.datetime.strptime(date, "%Y-%m-%d").date()
+                queryset = queryset.filter(date_obj)
+            except ValueError:
+                return Response(
+                    {"message": "Invalid date format. Please use YYYY-MM-DD."},
+                    status=400,
+                )
+
+        return queryset
 
     @action(detail=True, methods=["POST"])
     def vote(self, request, pk=None):
