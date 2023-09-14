@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
+
 from restaurant.models import Restaurant, Menu
 
 
@@ -9,6 +11,8 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
 
 class MenuSerializer(serializers.ModelSerializer):
+    votes_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Menu
         fields = (
@@ -21,6 +25,7 @@ class MenuSerializer(serializers.ModelSerializer):
             "description",
             "lunch_date",
             "votes",
+            "votes_count",
             "vote_status",
             "is_winner",
         )
@@ -28,5 +33,23 @@ class MenuSerializer(serializers.ModelSerializer):
         read_only_fields = (
             "votes",
             "vote_status",
+            "is_winner",
+        )
+
+    def get_votes_count(self, obj):
+        return obj.votes.count()
+
+
+class ResultsSerializer(MenuSerializer):
+    class Meta(MenuSerializer.Meta):
+        fields = (
+            "name",
+            "restaurant",
+            "votes_count",
+            "is_winner",
+        )
+
+        read_only_fields = (
+            "votes_count",
             "is_winner",
         )
