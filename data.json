@@ -1,0 +1,407 @@
+[
+{
+  "model": "user.user",
+  "pk": 24,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$M1ZjZe0uepLtFIrk8oWLd7$2054R3Bw5fUuLcthJAnbeUfY35rDIWe1PbY8UTKdLNM=",
+    "last_login": "2023-09-14T09:50:54.287Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Andriy",
+    "last_name": "Vasilchenko",
+    "email": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:27:39.875Z",
+    "status": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 25,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$xoDQFZZmJSjtlj4KjtJPhV$1skqIgdwvFBjzT069XUhC6zvBvYpP6XKGUhHkpBjrEM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user1",
+    "first_name": "Anastasia",
+    "last_name": "Kolesnichenko",
+    "email": "user1@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:33:30Z",
+    "status": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 26,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$InA8N9d0n8UFXV7jPqK5N8$ibtQ62lkm0rt3DD2l7+QU0ZN9ncMw7Hj/+iJccyKChQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user2",
+    "first_name": "Oleksandr",
+    "last_name": "Kunitskiy",
+    "email": "user2@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:34:19Z",
+    "status": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 27,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$P0KjG1puMjoeJOY2P9IWGo$wq61tgekRoLmU/6d3Qou0/4SUDZfdxbWAlL94id9IUw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user3",
+    "first_name": "Anastasia",
+    "last_name": "Bigunova",
+    "email": "user3@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:35:02Z",
+    "status": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 28,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$fZdZCARAkBtn7SURAHhDn5$8N0pPcALr/v0bdhaNieuYYE5eGDJ/k0MrFRxegg9NTc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user4",
+    "first_name": "Oleksiy",
+    "last_name": "Cherenko",
+    "email": "user4@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:36:50Z",
+    "status": "employee",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 29,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$kKUk4VFKsgFtEWDvCiuwQE$+azkDd4UKSR4eVXuTt0P6LPXUY1J7uuf+2vh3e06zuE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user5",
+    "first_name": "Ronald",
+    "last_name": "MacDonald",
+    "email": "user5@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:37:48Z",
+    "status": "rest_rep",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 30,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$rEQz05EhREpixwzczpxGAp$shvjlNy+PhuJK7ppG2FKuKHUDo9QsLSvN7G5jQU0t5s=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user6",
+    "first_name": "David",
+    "last_name": "Sanders",
+    "email": "user6@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:38:36Z",
+    "status": "rest_rep",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 31,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$i7kxb4P6wQKtKPn6aCiO90$s9AgwbikV7BSOX3ZNt97derzBFi6u0uyZY/rFXJ48S4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user7",
+    "first_name": "Natalia",
+    "last_name": "Zaitseva",
+    "email": "user7@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:39:50Z",
+    "status": "rest_rep",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 32,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$cga0CK9UkvArE3hOhyHTvW$Ev+XsJdn389r+dDTYari1mori1JBnNWb59SXSv4//gY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user8",
+    "first_name": "Yevgen",
+    "last_name": "Berezhniak",
+    "email": "user8@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:40:56Z",
+    "status": "rest_rep",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 33,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$yl569DencmZSnmtaGiAQQg$8QgOPYLVNxDQScHmYLtVQzwTQkBW21WzFHVqzo7hRSo=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user9",
+    "first_name": "Yurii",
+    "last_name": "Dovhal",
+    "email": "user9@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-14T07:42:00Z",
+    "status": "rest_rep",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "restaurant.restaurant",
+  "pk": 1,
+  "fields": {
+    "name": "KFC",
+    "info": "Popular fast food worldwide",
+    "representative": [
+      30
+    ]
+  }
+},
+{
+  "model": "restaurant.restaurant",
+  "pk": 2,
+  "fields": {
+    "name": "MacDonald's",
+    "info": "Everybody knows :)",
+    "representative": [
+      29
+    ]
+  }
+},
+{
+  "model": "restaurant.restaurant",
+  "pk": 3,
+  "fields": {
+    "name": "Salateria",
+    "info": "The best salads ever!",
+    "representative": [
+      32
+    ]
+  }
+},
+{
+  "model": "restaurant.restaurant",
+  "pk": 4,
+  "fields": {
+    "name": "Puzata hata",
+    "info": "Here food like home food, you'll always feel like you eat moms food!",
+    "representative": [
+      31
+    ]
+  }
+},
+{
+  "model": "restaurant.restaurant",
+  "pk": 5,
+  "fields": {
+    "name": "Sushi Master",
+    "info": "One of the most popular sushi in Ukraine. Have good delivery",
+    "representative": [
+      33
+    ]
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 1,
+  "fields": {
+    "name": "Fired chicken legs",
+    "restaurant": 1,
+    "first_course": "Potato frie",
+    "main_course": "Chicken legs",
+    "drink": "Coca-cola",
+    "dessert": "Ice cream",
+    "description": "Very very tasty legs, you realy enjoy it!",
+    "lunch_date": "2023-09-14",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 2,
+  "fields": {
+    "name": "BigMac Menu",
+    "restaurant": 2,
+    "first_course": "Village potato",
+    "main_course": "Burger BigMac",
+    "drink": "Spite",
+    "dessert": "MackFluri",
+    "description": "Real big a portion of potatoes, and awesome burger make your lunch super tasty, and you enevitably enjoy it!",
+    "lunch_date": "2023-09-14",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 3,
+  "fields": {
+    "name": "Cesar salad",
+    "restaurant": 3,
+    "first_course": "Rice",
+    "main_course": "Cesar salad",
+    "drink": "Orange juice",
+    "dessert": "Chia Almond",
+    "description": "Very healthy and good lunch for someone who care about health",
+    "lunch_date": "2023-09-14",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 4,
+  "fields": {
+    "name": "Borshch and pancakes",
+    "restaurant": 4,
+    "first_course": "Pancakes",
+    "main_course": "Borshch",
+    "drink": "Сompote",
+    "dessert": "Fruits",
+    "description": "This is classical ukrainian menu to eat good and tasty. Everyone will feel full",
+    "lunch_date": "2023-09-14",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 5,
+  "fields": {
+    "name": "Teriaki sushi set",
+    "restaurant": 5,
+    "first_course": "Rice chips",
+    "main_course": "Set Sakura",
+    "drink": "Water",
+    "dessert": "Moti",
+    "description": "Very good and tasty set and you will enjoy all the taste of Japan",
+    "lunch_date": "2023-09-14",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 6,
+  "fields": {
+    "name": "Fired chicken wings",
+    "restaurant": 1,
+    "first_course": "Potato frie",
+    "main_course": "Chicken wings",
+    "drink": "Coca-cola",
+    "dessert": "Ice cream",
+    "description": "Very very tasty legs, you realy enjoy it!",
+    "lunch_date": "2023-09-13",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 7,
+  "fields": {
+    "name": "CheeseBurger Menu",
+    "restaurant": 2,
+    "first_course": "Fired potato",
+    "main_course": "CheeseBurger Menu",
+    "drink": "Spite",
+    "dessert": "MackFluri",
+    "description": "Real big a portion of potatoes, and awesome burger make your lunch super tasty, and you enevitably enjoy it!",
+    "lunch_date": "2023-09-13",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 8,
+  "fields": {
+    "name": "Slovakian salad",
+    "restaurant": 3,
+    "first_course": "Rice",
+    "main_course": "Meet salad",
+    "drink": "Orange juice",
+    "dessert": "Chia Almond",
+    "description": "Very healthy and good lunch for someone who care about health",
+    "lunch_date": "2023-09-13",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 9,
+  "fields": {
+    "name": "Borshch and deruny",
+    "restaurant": 4,
+    "first_course": "Deruny",
+    "main_course": "Borshch",
+    "drink": "Сompote",
+    "dessert": "Fruits",
+    "description": "This is classical ukrainian menu to eat good and tasty. Everyone will feel full",
+    "lunch_date": "2023-09-13",
+    "vote_status": "opened",
+    "is_winner": false
+  }
+},
+{
+  "model": "restaurant.menu",
+  "pk": 10,
+  "fields": {
+    "name": "Red dragon sushi set",
+    "restaurant": 5,
+    "first_course": "Rice chips",
+    "main_course": "Set Red dragon",
+    "drink": "Water",
+    "dessert": "Moti",
+    "description": "Very good and tasty set and you will enjoy all the taste of Japan",
+    "lunch_date": "2023-09-13",
+    "vote_status": "opened",
+    "is_winner": true
+  }
+}
+]
