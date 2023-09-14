@@ -15,8 +15,10 @@ class RestaurantSerializer(serializers.ModelSerializer):
         if not user.is_staff:
             raise PermissionDenied("Only admin can create restaurants")
 
+        return data
+
     def create(self, validated_data):
-        return Menu.objects.create(**validated_data)
+        return Restaurant.objects.create(**validated_data)
 
 
 class MenuSerializer(serializers.ModelSerializer):
@@ -51,18 +53,18 @@ class MenuSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         user = self.context["request"].user
-        user_status = user.status
-        if user_status != "rest_rep" or user.is_staff:
+
+        if user.status != "rest_rep" and not user.is_staff:
             raise PermissionDenied(
-                "Only restaurant representatives and admins can " "create/update menus."
+                "Only restaurant representatives and admins can create/update menus."
             )
         if (
-            user_status == "rest_rep"
+            user.status == "rest_rep"
             and user not in data["restaurant"].representative.all()
         ):
             raise PermissionDenied(
                 "Restaurant representatives can only create "
-                "menus for restaurant their responsible on."
+                "menus for the restaurant they're responsible for."
             )
         return data
 
