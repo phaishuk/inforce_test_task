@@ -9,6 +9,15 @@ class RestaurantSerializer(serializers.ModelSerializer):
         model = Restaurant
         fields = ("name", "representative", "info")
 
+    def validate(self, data):
+        user = self.context["request"].user
+
+        if not user.is_staff:
+            raise PermissionDenied("Only admin can create restaurants")
+
+    def create(self, validated_data):
+        return Menu.objects.create(**validated_data)
+
 
 class MenuSerializer(serializers.ModelSerializer):
     votes_count = serializers.SerializerMethodField()
@@ -16,6 +25,7 @@ class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
         fields = (
+            "id",
             "name",
             "restaurant",
             "first_course",
@@ -42,8 +52,10 @@ class MenuSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = self.context["request"].user
         user_status = user.status
-        if user_status != "rest_rep":
-            raise PermissionDenied("Only restaurant representatives can create menus.")
+        if user_status != "rest_rep" or user.is_staff:
+            raise PermissionDenied(
+                "Only restaurant representatives and admins can " "create/update menus."
+            )
         if (
             user_status == "rest_rep"
             and user not in data["restaurant"].representative.all()
