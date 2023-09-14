@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.exceptions import PermissionDenied
+
 from restaurant.models import Restaurant, Menu
 
 
@@ -36,6 +38,24 @@ class MenuSerializer(serializers.ModelSerializer):
 
     def get_votes_count(self, obj):
         return obj.votes.count()
+
+    def validate(self, data):
+        user = self.context["request"].user
+        user_status = user.status
+        if user_status != "rest_rep":
+            raise PermissionDenied("Only restaurant representatives can create menus.")
+        if (
+            user_status == "rest_rep"
+            and user not in data["restaurant"].representative.all()
+        ):
+            raise PermissionDenied(
+                "Restaurant representatives can only create "
+                "menus for restaurant their responsible on."
+            )
+        return data
+
+    def create(self, validated_data):
+        return Menu.objects.create(**validated_data)
 
 
 class ResultsSerializer(MenuSerializer):
