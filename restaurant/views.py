@@ -2,6 +2,7 @@ import datetime
 
 from django.db.models import Count
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -16,23 +17,23 @@ from restaurant.serializers import (
 class RestaurantViewSet(ModelViewSet):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class MenuViewSet(ModelViewSet):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
+    permission_classes = (IsAuthenticated,)
 
     @action(detail=True, methods=["POST"])
     def vote(self, request, pk=None):
         menu = self.get_object()
 
         if request.user.status != "employee":
-            return Response({"message": "Only employees can vote."}, status=400)
+            return Response({"message": "Only employees can vote."})
 
         if menu.lunch_date != datetime.date.today():
-            return Response(
-                {"message": "You can't vote for menus from other dates."}, status=400
-            )
+            return Response({"message": "You can't vote for menus from other dates."})
 
         if menu.vote_status == "closed":
             winner_menu = Menu.objects.filter(
@@ -58,6 +59,10 @@ class MenuViewSet(ModelViewSet):
     @action(detail=False, methods=["POST"])
     def close_voting(self, request):
         today_menus = Menu.objects.filter(lunch_date=datetime.date.today())
+
+        if not request.user.is_staff:
+            return Response({"message": "Only staff employee can close the voting"})
+
         for menu in today_menus:
             menu.vote_status = "closed"
             menu.save()
@@ -88,8 +93,7 @@ class MenuViewSet(ModelViewSet):
                     "message": f"Voting is closed."
                     f"Today we are eating {winner_menu.name}"
                     f" in {winner_menu.restaurant.name}."
-                },
-                status=400,
+                }
             )
         else:
             today_menus = Menu.objects.filter(lunch_date=today, vote_status="opened")
